@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="field-detail">
+    {% if field.photo %}
+        <img src="{{field.photo.url}}" alt="{{field.name}}">
+    {% endif %}
+    <h1>{{field.name}}</h1>
+    <p><b>Address:</b> {{field.address}}</p>
+    <p><b>Description:</b> {{field.description}}</p>
+    <p><b>Category:</b> {{field.category.name}}</p>
+    <p><b>Players:</b> {{field.category.players_count}}</p>
+    <p><b>Price:</b> {{field.price}}</p>
+
+    {% if field.is_free %}
+        <p>Available</p>
+        <a href="{% url 'book_field' field.id %}">Book Now</a>
+    {% else %}
+        <p>Already Booked</p>
+    {% endif %}
+
+    <a href="{% url 'fields' %}">Back to Stadiums</a>
+    <a href="{% url 'cancel_booking' field.id %}">Cancel book</a>
+    <a href="{% url 'finish_booking' field.id %}">finish book</a>
+    {% if book %}
+    <a href="{% url 'booking_detail' book.id %}">Booking Details</a>
+{% else %}
+    <a href="{% url 'book_field' field.id %}">
+        Book Now
+    </a>
+{% endif %}
+</div>
+
+{% endblock %}

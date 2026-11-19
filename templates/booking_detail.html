@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="profile-container">
+    <div class="profile-box">
+        <h2>Booking Details</h2>
+
+        <h3>{{book.field.name}}</h3>
+
+        <div class="profile-info">
+            <div>
+                <b>Address:</b>
+                <span>{{book.field.address}}</span>
+            </div>
+            <div>
+                <b>Price:</b>
+                <span>{{ book.field.price }}</span>
+            </div>
+            <div>
+                <b>Has Team:</b>
+                <span>{{book.has_team}}</span>
+            </div>
+            <div>
+                <b>Players Needed:</b>
+                <span>{{book.players_needed}}</span>
+            </div>
+            <div>
+                <b>Status:</b>
+                <span>{{book.status}}</span>
+            </div>
+            <div>
+                <b>Created At:</b>
+                <span>{{book.created_at}}</span>
+            </div>
+        </div>
+        <br>
+
+        <a href="/my-fields">Back to My Stadiums</a>
+
+    </div>
+
+</div>
+
+{% endblock %}

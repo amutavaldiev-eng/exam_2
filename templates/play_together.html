@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="groups-container">
+    <h1>Play Together</h1>
+    <p>Find players and join football teams.</p>
+    <div class="groups-list">
+        {% csrf_token %}
+        {% for book in books %}
+            <div class="group-card">
+                <h3>{{book.field.name}}</h3>
+                <p><b>Address:</b> {{book.field.address}}</p>
+                <p><b>Organizer:</b> {{book.user.first_name}}</p>
+                <p><b>Players Needed:</b> {{book.players_needed}}</p>
+                <p><b>Created:</b> {{book.created_at}}</p>
+                <h4>Participants: {{book.participants.count}}</h4>
+                    {% for participant in book.participants.all %}
+                        <p>{{participant.user.username}}</p>
+                    {% endfor %}
+                {% csrf_token %}
+                {% if book.user != request.user %}
+                    <form method="POST" action="{% url 'join_team' book.id %}">
+                        <button type="submit">Join Team</button>
+                    </form>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

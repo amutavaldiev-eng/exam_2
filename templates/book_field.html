@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-box">
+        <h2>Book Stadium</h2>
+        <h3>{{field.name}}</h3>
+        <p>Price: {{field.price}}</p>
+        <form method="POST">
+            {% csrf_token %}
+            <label>Do you have a team?</label>
+            <select name="has_team">
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+            <label>Players Needed</label>
+            <input type="number" name="players_needed" min="0" value="0" required>
+        
+            <button type="submit">Book Now</button>
+        </form>
+        <p><a href="/fields">Back to Stadiums</a></p>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="profile-container">
+
+    <div class="profile-box">
+        {% if user.photo %}
+            <img src="{{user.photo.url}}" alt="Profile Photo" class="profile-photo">
+        {% endif %}
+
+        <h2>{{user.first_name}}</h2>
+        <p>@{{user.username}}</p>
+
+        <div class="profile-info">
+            <div>
+                <b>Phone:</b>
+                <span>{{user.phone}}</span>
+            </div>
+            <div>
+                <b>Position:</b>
+                <span>{{user.position}}</span>
+            </div>
+            <div>
+                <b>Email:</b>
+                <span>{{user.email}}</span>
+            </div>
+        </div>
+
+        <a href="/profile/edit/" class="edit-profile-btn"> Edit Profile</a>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="fields-container">
+    <h1>Football Stadiums</h1>
+    <p>Find and choose your favorite stadium.</p>
+    <form method="GET" class="search-form">
+        <input name="search" type="text" value="{{search}}" placeholder="Search stadium...">
+        <button type="submit">Search</button>
+    </form>
+
+    <form method="GET" class="filter-form">
+        <select name="category">
+            <option value="{{category}}">All Categories</option>
+            {% for cat in categories %}
+                <option value="{{cat.id}}">{{cat.name}}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Filter</button>
+    </form>
+
+    <div class="fields-list">
+        {% for field in fields %}
+            <div class="field-card">
+                {% if field.photo %}
+                    <img src="{{field.photo.url}}" alt="{{field.name}}">
+                {% endif %}
+                <h3>{{field.name}}</h3>
+                <p>{{field.address}}</p>
+                <p>Category: {{field.category.name}}</p>
+                <p>Price: {{field.price}}</p>
+
+                {% if field.is_free %}
+                    <span>Available</span>
+                {% else %}
+                    <span>Booked</span>
+                {% endif %}
+                <a href="/fields/{{field.id}}">View Details</a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

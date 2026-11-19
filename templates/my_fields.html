@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="my-fields">
+    <h1>My Fields</h1>
+
+    {% for book in books %}
+        <div class="field-card">
+            <h2>{{ book.field.name }}</h2>
+            <p>Address: {{ book.field.address }}</p>
+            <p>Price: {{ book.field.price }}</p>
+            <p>Status: {{ book.status }}</p>
+            <p>Has Team: {{ book.has_team }}</p>
+            <p>Players Needed: {{ book.players_needed }}</p>
+            <p>Booking Date: {{ book.created_at }}</p>
+            <a href="/bookings/{{book.id}}">Details</a>
+
+        </div>
+    {% endfor %}
+
+</div>
+{% endblock %}

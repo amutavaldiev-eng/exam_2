@@ -4,20 +4,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Stadium</title>
     <link rel="stylesheet" href="{% static 'style.css' %}">
-    <title>Stack Overflow</title>
 </head>
 <body>
-    <nav>
-        <a href="/home">Home</a>
-        <a href="/stadiums">Stadiums</a>
-        <a href="/my_stadiums">My Stadiums</a>
-        <a href="/group">Group</a>
-    </nav>
-    <hr>
-    {% block content %}
-    {% endblock %}
+
+    <header>
+        <h2>Football Stadium</h2>
+
+        <nav>
+            {% if user.is_authenticated %}
+                <a href="/">Home</a>
+                <a href="/fields">Stadiums</a>
+                <a href="/my-fields/">My Stadiums</a>
+                <a href="/play-together">Groups</a>
+                <a href="/logout">Logout</a>
+                <a href="/profile">
+                    {% if user.photo %}
+                        <img src="{{user.photo.url}}" width="40" height="40"
+                             style="border-radius: 50%; object-fit: cover;">
+                    {% endif %}
+                </a>
+            {% else %}
+                <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'loginn' %}">Login</a>
+                <a href="{% url 'register' %}">Register</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
 
 </body>
-</html> {% endcomment %}
-
+</html>
